@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_res_employee_department_tree" model="ir.ui.view">
+        <field name="name">res.employee.department.tree</field>
+        <field name="model">employee.department.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Department Master">
+                <field name="name"/>
+<!--                <field name="employee_ids"/>-->
+                <field name="manager_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_employee_department_form" model="ir.ui.view">
+        <field name="name">res.employee.department.form</field>
+        <field name="model">employee.department.ept</field>
+        <field name="arch" type="xml">
+            <form string="Department Master">
+                <group>
+                    <field name="name"/>
+<!--                    <field name="employee_ids"/>-->
+                    <field name="manager_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_res_employee_department_search" model="ir.ui.view">
+        <field name="name">res.employee.department.search</field>
+        <field name="model">employee.department.ept</field>
+        <field name="arch" type="xml">
+            <search string="Department Master">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_res_employee_department" model="ir.actions.act_window">
+        <field name="name">Department Master</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.department.ept</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="search_view_id" ref="view_res_employee_department_search"/>-->
+        <field name="help" type="html">
+            <p>
+                Here you can create department data.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hr_ept_root" name="HR"/>
+    <menuitem id="menu_hr_ept_sub1" name="Employee Management" parent="menu_hr_ept_root"/>
+    <menuitem id="menu_hr_ept_sub2" name="Department" parent="menu_hr_ept_sub1"
+              action="action_res_employee_department"/>
+</odoo>

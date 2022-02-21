@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_res_state_demo_tree" model="ir.ui.view">
+        <field name="name">res.state.demo.tree</field>
+        <field name="model">res.state.ept</field>
+        <field name="arch" type="xml">
+            <tree string="State Demo">
+                <field name="name"/>
+                <field name="state_code"/>
+                <field name="country_id"/>
+                <field name="city_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_state_demo_form" model="ir.ui.view">
+        <field name="name">res.state.demo.form</field>
+        <field name="model">res.state.ept</field>
+        <field name="arch" type="xml">
+            <form string="State Demo">
+                <group>
+                    <field name="name"/>
+                    <field name="state_code"/>
+                    <field name="country_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_res_state_demo_search" model="ir.ui.view">
+        <field name="name">res.state.demo.search</field>
+        <field name="model">res.state.ept</field>
+        <field name="arch" type="xml">
+            <search string="State Demo">
+                <field name="name"/>
+                <field name="state_code"/>
+                <field name="country_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_res_state_ept" model="ir.actions.act_window">
+        <field name="name">State Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.state.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_res_state_demo_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can add the details of state.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_localizations_ept_sub3" name="State" parent="menu_localizations_ept_sub1"
+              action="action_res_state_ept"/>
+</odoo>

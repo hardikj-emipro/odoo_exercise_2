@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_employee_ept_tree" model="ir.ui.view">
+        <field name="name">employee.ept.tree</field>
+        <field name="model">employee.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Master">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="shift_id"/>
+                <field name="gender"/>
+                <field name="manager_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

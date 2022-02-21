@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_localization_country_demo,User: Res Localization Country Demo,model_res_country_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_localization_state_demo,User: Res Localization State Demo,model_res_state_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_localization_city_demo,User: Res Localization City Demo,model_res_city_ept,sales_team.group_sale_salesman,1,1,1,1

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_course_ept_tree" model="ir.ui.view">
+        <field name="name">res.course.ept.tree</field>
+        <field name="model">course.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Course Demo">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_course_ept_form" model="ir.ui.view">
+        <field name="name">res.course.ept.form</field>
+        <field name="model">course.ept</field>
+        <field name="arch" type="xml">
+            <form string="Course Demo">
+                <group>
+                    <field name="name"/>
+                    <field name="student_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_course_ept_search" model="ir.ui.view">
+        <field name="name">res.course.ept.search</field>
+        <field name="model">course.ept</field>
+        <field name="arch" type="xml">
+            <search string="Course Demo">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_course_ept" model="ir.actions.act_window">
+        <field name="name">Course Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">course.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_course_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can add the details of course.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_student_info_root" name="Student_Info"/>
+    <menuitem id="menu_student_info_sub1" name="Student Info" parent="menu_student_info_root"/>
+    <menuitem id="menu_student_info_sub2" name="Course" parent="menu_student_info_sub1"
+              action="action_course_ept"/>
+</odoo>

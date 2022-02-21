@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_city_demo_ept_tree" model="ir.ui.view">
+        <field name="name">res.city.ept.tree</field>
+        <field name="model">res.city.ept</field>
+        <field name="arch" type="xml">
+            <tree string="City Demo" editable="top">
+                <field name="name"/>
+                <field name="state_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_city_ept_search" model="ir.ui.view">
+        <field name="name">res.city.ept.search</field>
+        <field name="model">res.city.ept</field>
+        <field name="arch" type="xml">
+            <search string="City Demo">
+                <field name="name"/>
+                <field name="state_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_res_city_ept" model="ir.actions.act_window">
+        <field name="name">City Demo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city.ept</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_res_city_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can add the details of city.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_localizations_ept_sub4" name="City" parent="menu_localizations_ept_sub1"
+              action="action_res_city_ept"/>
+</odoo>
