@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Department Master">
                 <field name="name"/>
-<!--                <field name="employee_ids"/>-->
+                <field name="employee_ids"/>
                 <field name="manager_id"/>
             </tree>
         </field>
@@ -19,8 +19,14 @@
             <form string="Department Master">
                 <group>
                     <field name="name"/>
-<!--                    <field name="employee_ids"/>-->
                     <field name="manager_id"/>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Employee">
+                            <field name="employee_ids"/>
+                        </page>
+                    </notebook>
                 </group>
             </form>
         </field>
@@ -41,7 +47,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">employee.department.ept</field>
         <field name="view_mode">tree,form</field>
-<!--        <field name="search_view_id" ref="view_res_employee_department_search"/>-->
+        <field name="search_view_id" ref="view_res_employee_department_search"/>
         <field name="help" type="html">
             <p>
                 Here you can create department data.

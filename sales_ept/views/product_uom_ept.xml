@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_uom_ept_tree" model="ir.ui.view">
+        <field name="name">product.uom.ept.tree</field>
+        <field name="model">product.uom.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Product Unit">
+                <field name="name"/>
+                <field name="unit_category_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_uom_ept_form" model="ir.ui.view">
+        <field name="name">product.uom.ept.form</field>
+        <field name="model">product.uom.ept</field>
+        <field name="arch" type="xml">
+            <form string="Product Unit">
+                <group>
+                    <field name="unit_category_id"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_uom_ept_search" model="ir.ui.view">
+        <field name="name">product.uom.ept.search</field>
+        <field name="model">product.uom.ept</field>
+        <field name="arch" type="xml">
+            <search string="Product Unit">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_uom_ept" model="ir.actions.act_window">
+        <field name="name">Product Unit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.uom.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_product_uom_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create product unit.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_ept_sub4" name="Product Unit" parent="menu_sales_ept_sub1"
+              action="action_product_uom_ept"/>
+</odoo>

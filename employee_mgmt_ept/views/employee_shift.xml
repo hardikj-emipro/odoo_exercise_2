@@ -5,8 +5,8 @@
         <field name="model">employee.department.shift.ept</field>
         <field name="arch" type="xml">
             <tree string="Shift Master" editable="top">
-                <field name="name"/>
-<!--                <field name="employee_ids"/>-->
+                <field name="shift"/>
+                <field name="employee_ids"/>
             </tree>
         </field>
     </record>
@@ -16,7 +16,7 @@
         <field name="model">employee.department.shift.ept</field>
         <field name="arch" type="xml">
             <search string="Shift Master">
-                <field name="name"/>
+                <field name="shift"/>
             </search>
         </field>
     </record>

@@ -7,3 +7,7 @@ class Country(models.Model):
     name=fields.Char(string="Country Name", help="Country Name field of localization module")
     short_code=fields.Char(string="Short Code", help="Country code like US for America")
     state_ids=fields.One2many('res.state.ept', 'country_id', string="State of Country", help="Display number of state from state model")
+
+    _sql_constraints = [
+        ('unique_country_code', 'unique(short_code)', 'Country code must be unique...')
+    ]

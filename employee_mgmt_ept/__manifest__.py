@@ -7,12 +7,15 @@
     'author': 'Emipro Technologies Pvt. Ltd.',
     'category': "Sales/Sales",
     'description': """
-    1st Programme of Exercise 2.
+    3rd Programme of Exercise 2.
     """,
     'depends': ['sales_team'],
-    'data': ['security/ir.model.access.csv',
+    'data': ['security/hr_security.xml',
+             'security/ir.model.access.csv',
              'views/employee_department.xml',
-             'views/employee_shift.xml'],
+             'views/employee_shift.xml',
+             'views/employee.xml',
+             'views/employee_leave_ept.xml'],
     'demo': [],
     'installable': True,
     'application': False,

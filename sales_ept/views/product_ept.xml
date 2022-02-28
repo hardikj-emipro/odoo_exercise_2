@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_ept_tree" model="ir.ui.view">
+        <field name="name">product.ept.tree</field>
+        <field name="model">product.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Product Master">
+                <field name="category_id"/>
+                <field name="name"/>
+                <field name="sku"/>
+                <field name="product_type"/>
+                <field name="sale_price"/>
+                <field name="cost_price"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_ept_form" model="ir.ui.view">
+        <field name="name">product.ept.form</field>
+        <field name="model">product.ept</field>
+        <field name="arch" type="xml">
+            <form string="Product Master">
+                <group>
+                    <group>
+                        <field name="category_id"/>
+                        <field name="name"/>
+                        <field name="sku"/>
+                        <field name="weight"/>
+                        <field name="length"/>
+                        <field name="volume"/>
+                    </group>
+                    <group>
+                        <field name="width"/>
+                        <field name="barcode"/>
+                        <field name="product_type"/>
+                        <field name="sale_price"/>
+                        <field name="cost_price"/>
+                        <field name="uom_id"/>
+                    </group>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="product_description"/>
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_ept_search" model="ir.ui.view">
+        <field name="name">product.ept.search</field>
+        <field name="model">product.ept</field>
+        <field name="arch" type="xml">
+            <search string="Product Master">
+                <field name="name"/>
+                <field name="sku"/>
+                <field name="barcode"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_ept_search" model="ir.actions.act_window">
+        <field name="name">Product Master</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_product_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create product.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_ept_sub5" name="Product Master" parent="menu_sales_ept_sub1"
+              action="action_product_ept_search"/>
+</odoo>

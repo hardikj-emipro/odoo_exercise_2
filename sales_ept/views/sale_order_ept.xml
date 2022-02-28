@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order">
+                <field name="order_number"/>
+                <field name="order_date"/>
+                <field name="partner_invoice_id"/>
+                <field name="sales_person"/>
+                <field name="state"/>
+                <field name="total_weight"/>
+                <field name="total_volume"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order.ept</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order">
+                <header>
+                    <field name="state" widget="statusbar" clickable="true"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="order_number"/>
+                        <field name="partner_id" domain="[('parent_id', '=', False)]"/>
+                        <field name="partner_invoice_id" domain="[('address_type', '=', 'Invoice'),
+                                                                                 ('parent_id.id', '=', partner_id)]"/>
+                        <field name="partner_shipping_id" domain="[('address_type', '=', 'Shipping'),
+                                                                                  ('parent_id', '=', partner_id)]"/>
+                    </group>
+                    <group>
+                        <field name="order_date"/>
+                        <field name="sales_person"/>
+                        <field name="total_weight"/>
+                        <field name="total_volume"/>
+                    </group>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="order_line">
+                                <tree>
+                                    <field name="product"/>
+                                    <field name="name_description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal_without_tax"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+                <group>
+                    <field name="order_total"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_order_search" model="ir.ui.view">
+        <field name="name">sale.order.search</field>
+        <field name="model">sale.order.ept</field>
+        <field name="arch" type="xml">
+            <search string="Sales Order">
+                <field name="order_number"/>
+                <field name="partner_id"/>
+                <field name="order_date"/>
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_order" model="ir.actions.act_window">
+        <field name="name">Sales Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_sale_order_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create Sales Order.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_ept_sub2_1" name="Transactions" parent="menu_sales_ept_root"/>
+    <menuitem id="menu_sales_ept_sub2_1_1" name="Sales Order" parent="menu_sales_ept_sub2_1"
+              action="action_sale_order"/>
+</odoo>
