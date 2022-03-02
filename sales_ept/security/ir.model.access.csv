@@ -6,3 +6,6 @@ access_res_product_master_user,user: Res product master user,model_product_ept,s
 access_res_partner_user,user: Res partner user,model_res_partner_ept,sales_team.group_sale_salesman,1,1,1,1
 access_res_sales_order_user,user: Sales Order User,model_sale_order_ept,sales_team.group_sale_salesman,1,1,1,1
 access_res_sales_order_line_user,user: Sales Order Line User,model_sale_order_line_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_crm_team_ept_user,user: CRM Team User,model_crm_team_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_crm_lead_ept_user,user: CRM Lead User,model_crm_lead_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_crm_lead_line_ept_user,user: CRM Lead Line User,model_crm_lead_line_ept,sales_team.group_sale_salesman,1,1,1,1

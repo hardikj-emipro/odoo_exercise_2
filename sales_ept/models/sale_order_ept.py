@@ -17,7 +17,7 @@ class Sale_Order(models.Model):
     partner_shipping_id = fields.Many2one(comodel_name='res.partner.ept',
                                           required=True, string="Shipping", help="Shipping customer data "
                                                                                  "loaded based on main customer")
-    order_date=fields.Date(string="Order Date", help="Date of order")
+    order_date=fields.Date(string="Order Date", default=fields.Date.today(), help="Date of order")
     sales_person=fields.Many2one(comodel_name='res.users', string="Sales Person", help="This data is "
                                                                                        "loaded from res.users model")
     state=fields.Selection(selection=[('Draft', 'Draft'), ('Confirmed', 'Confirmed'), ('Done', 'Done'),
@@ -28,6 +28,8 @@ class Sale_Order(models.Model):
     total_weight=fields.Float(string="Total Weight", digits=(6,2), compute="compute_total_weight", store=False, help="Display total weight", readonly=True)
     total_volume=fields.Float(string="Total Volume", digits=(6,2), compute="compute_total_volume", store=False, help="Display total volume", readonly=True)
     order_total = fields.Float(string="Order Amount", compute="compute_order_total", store=True, help="Store order amount data")
+    lead_id = fields.Many2one(comodel_name="crm.lead.ept", string="Lead Id",
+                              help="Lead id field many2one")
 
     @api.depends('order_line.product')
     def compute_total_weight(self):
@@ -69,4 +71,8 @@ class Sale_Order(models.Model):
             else:
                 self.partner_shipping_id = partner_shipping[0]
 
-
+    @api.model
+    def create(self,vals):
+        vals['order_number'] = self.env['ir.sequence'].next_by_code('sale.order')
+        sale_order_data = super(Sale_Order, self).create(vals)
+        return sale_order_data

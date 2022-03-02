@@ -5,3 +5,6 @@ from . import product_ept
 from . import res_partner_ept
 from . import sale_order_ept
 from . import sale_order_line_ept
+from . import crm_team_ept
+from . import crm_lead_ept
+from . import crm_lead_line_ept
