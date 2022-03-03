@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_purchase_order_ept_tree" model="ir.ui.view">
+        <field name="name">purchase.order.ept.tree</field>
+        <field name="model">purchase.order.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Order">
+                <field name="name"/>
+                <field name="order_date"/>
+                <field name="partner_id"/>
+                <field name="warehouse_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order.ept</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="state" widget="statusbar" clickable="true"/>
+                    <button name="confirm_purchase_order" string="Confirm Order" type="object"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="order_date"/>
+                    </group>
+                    <group>
+                        <field name="warehouse_id"/>
+                    </group>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="purchase_order_line_ids">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="cost_price"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_search" model="ir.ui.view">
+        <field name="name">purchase.order.search</field>
+        <field name="model">purchase.order.ept</field>
+        <field name="arch" type="xml">
+            <search string="Purchase Order">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="order_date"/>
+                <group expand="0" string="Group By">
+                    <filter string="Vendor/Supplier" name="vendor" domain="[]" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_purchase_order" model="ir.actions.act_window">
+        <field name="name">Purchase Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_purchase_order_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create Purchase Order.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_ept_sub2_1_2" name="Purchase Order" parent="menu_sales_ept_sub2_1"
+              action="action_purchase_order"/>
+</odoo>

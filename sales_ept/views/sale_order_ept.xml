@@ -23,6 +23,7 @@
             <form string="Sales Order">
                 <header>
                     <field name="state" widget="statusbar" clickable="true"/>
+                    <button name="confirm_sale_order" string="Confirm Order" type="object"/>
                 </header>
                 <group>
                     <group>
@@ -38,6 +39,7 @@
                         <field name="sales_person"/>
                         <field name="total_weight"/>
                         <field name="total_volume"/>
+                        <field name="warehouse_id"/>
                     </group>
                 </group>
                 <group>

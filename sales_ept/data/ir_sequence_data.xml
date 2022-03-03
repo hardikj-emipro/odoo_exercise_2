@@ -16,5 +16,28 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+
+        <record id="seq_purchase_order" model="ir.sequence">
+            <field name="name">Purchase Order</field>
+            <field name="code">purchase.order</field>
+            <field name="prefix">PO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_stock_out" model="ir.sequence">
+            <field name="name">Stock Out</field>
+            <field name="code">stock.picking.out</field>
+            <field name="prefix">WH/OUT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_stock_in" model="ir.sequence">
+            <field name="name">Stock In</field>
+            <field name="code">stock.picking.in</field>
+            <field name="prefix">WH/IN/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
     </data>
 </odoo>

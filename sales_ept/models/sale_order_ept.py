@@ -8,7 +8,7 @@ class Sale_Order(models.Model):
     _description = "Sale Order"
     _rec_name = "order_number"
 
-    order_number = fields.Char(string="Order No.", help="Order number for each separate order", required=True)
+    order_number = fields.Char(string="Order No.", help="Order number for each separate order", readonly=True)
     partner_id = fields.Many2one(comodel_name='res.partner.ept', required=True,
                                  string="Customer", help="Customer data loaded from partner model with filter")
     partner_invoice_id = fields.Many2one(comodel_name='res.partner.ept',
@@ -30,6 +30,11 @@ class Sale_Order(models.Model):
     order_total = fields.Float(string="Order Amount", compute="compute_order_total", store=True, help="Store order amount data")
     lead_id = fields.Many2one(comodel_name="crm.lead.ept", string="Lead Id",
                               help="Lead id field many2one")
+    warehouse_id=fields.Many2one(
+        comodel_name="stock.warehouse.ept",
+        string="Warehouse",
+        help="Data fetch from warehouse model"
+    )
 
     @api.depends('order_line.product')
     def compute_total_weight(self):
@@ -76,3 +81,34 @@ class Sale_Order(models.Model):
         vals['order_number'] = self.env['ir.sequence'].next_by_code('sale.order')
         sale_order_data = super(Sale_Order, self).create(vals)
         return sale_order_data
+
+    def confirm_sale_order(self):
+        self.state = "Confirmed"
+        stock_move_line_data = []
+        location = self.env['stock.location.ept']
+        customer_location = location.search([('name', '=', 'Customer')])
+        for line in self.order_line:
+            line.state = "Confirmed"
+            modified_product_name = line.product.name + ":" + self.warehouse_id.stock_location_id.name + "->" + customer_location.name
+            stock_move_line_data.append((0,0,
+                {
+                    "name": modified_product_name,
+                    "product_id": line.product.id,
+                    "uom_id": line.uom_id.id,
+                    "source_location_id": self.warehouse_id.stock_location_id.id,
+                    "destination_location_id": customer_location.id,
+                    "qty_to_deliver": line.quantity,
+                    "state": "Draft",
+                    "sale_line_id": line.id,
+                }
+            ))
+        stock_picking = self.env['stock.picking.ept']
+        stock_picking_data = {
+            "partner_id": self.partner_id.id,
+            "state": "Draft",
+            "sale_order_id": self.id,
+            "transaction_type": "Out",
+            "move_ids":stock_move_line_data
+        }
+        last_record_of_stock_picking = stock_picking.create(stock_picking_data)
+        return last_record_of_stock_picking

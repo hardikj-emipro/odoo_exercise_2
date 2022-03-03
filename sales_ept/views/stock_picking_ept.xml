@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_ept_tree" model="ir.ui.view">
+        <field name="name">stock.picking.ept.tree</field>
+        <field name="model">stock.picking.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Picking">
+                <field name="transaction_date"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="transaction_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_ept_form" model="ir.ui.view">
+        <field name="name">stock.picking.ept.form</field>
+        <field name="model">stock.picking.ept</field>
+        <field name="arch" type="xml">
+            <form string="Stock Picking">
+                <header>
+                    <field name="state" widget="statusbar" clickable="true"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="transaction_type"/>
+                        <field name="transaction_date"/>
+                    </group>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Product Details">
+                            <field name="move_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="product_id"/>
+                                    <field name="uom_id"/>
+                                    <field name="source_location_id"/>
+                                    <field name="destination_location_id"/>
+                                    <field name="qty_to_deliver"/>
+                                    <field name="qty_to_done"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_ept_search" model="ir.ui.view">
+        <field name="name">stock.picking.ept.search</field>
+        <field name="model">stock.picking.ept</field>
+        <field name="arch" type="xml">
+            <search string="Stock Picking">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_out_ept" model="ir.actions.act_window">
+        <field name="name">Delivery Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('transaction_type', '=', 'Out')]</field>
+        <field name="search_view_id" ref="view_stock_picking_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create Stock Picking Records.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_stock_in_ept" model="ir.actions.act_window">
+        <field name="name">Incoming Shipments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('transaction_type', '=', 'In')]</field>
+        <field name="search_view_id" ref="view_stock_picking_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create Stock Picking Records.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_delivery_orders" name="Delivery Orders" parent="menu_configuration_ept_sub1_1"
+              action="action_stock_out_ept"/>
+    <menuitem id="menu_incoming_shipments" name="Incoming Shipments" parent="menu_configuration_ept_sub1_1"
+              action="action_stock_in_ept"/>
+</odoo>

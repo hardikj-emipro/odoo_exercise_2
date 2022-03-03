@@ -21,8 +21,13 @@
              'views/res_partner_ept.xml',
              'views/sale_order_ept.xml',
              'views/crm_team_ept.xml',
-             'views/crm_lead_ept.xml'],
-    'demo': [],
+             'views/crm_lead_ept.xml',
+             'views/stock_warehouse_ept.xml',
+             'views/stock_location_ept.xml',
+             'views/purchase_order_ept.xml',
+             'views/stock_picking_ept.xml'
+             ],
+    'demo': ['data/ir_sequence_data.xml'],
     'installable': True,
     'application': False,
     'auto_install': False

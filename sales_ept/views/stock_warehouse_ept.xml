@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_warehouse_ept_tree" model="ir.ui.view">
+        <field name="name">stock.warehouse.ept.tree</field>
+        <field name="model">stock.warehouse.ept</field>
+        <field name="arch" type="xml">
+            <tree string="Warehouse">
+                <field name="name"/>
+                <field name="short_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_warehouse_ept_form" model="ir.ui.view">
+        <field name="name">stock.warehouse.ept.form</field>
+        <field name="model">stock.warehouse.ept</field>
+        <field name="arch" type="xml">
+            <form string="Warehouse">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="short_code"/>
+                        <field name="address_id"/>
+                    </group>
+                    <group>
+                        <field name="stock_location_id"/>
+                        <field name="view_location_id"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stock_warehouse_ept_search" model="ir.ui.view">
+        <field name="name">stock_warehouse_ept_search</field>
+        <field name="model">stock.warehouse.ept</field>
+        <field name="arch" type="xml">
+            <search string="Warehouse">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_warehouse_ept" model="ir.actions.act_window">
+        <field name="name">Warehouse</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.warehouse.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_stock_warehouse_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Here you can create Warehouse.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_inventory_ept_sub1" name="Inventory" parent="menu_sales_ept_root"/>
+    <menuitem id="menu_configuration_ept_sub1_1" name="Configuration" parent="menu_inventory_ept_sub1"/>
+    <menuitem id="menu_warehouse" name="Warehouse" parent="menu_configuration_ept_sub1_1"
+              action="action_stock_warehouse_ept"/>
+</odoo>
