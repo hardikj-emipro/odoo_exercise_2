@@ -1,4 +1,4 @@
-from odoo import fields,models
+from odoo import fields,models,api
 
 class Product_EPT(models.Model):
     _name="product.ept"
@@ -18,5 +18,28 @@ class Product_EPT(models.Model):
     cost_price=fields.Float(string="Purchase Price", help="Purchase price field of product model")
     uom_id = fields.Many2one('product.uom.ept', string="Unit", help="Unit for product will use in sales and purchase transaction")
     product_description=fields.Text(string="Description", help="Product description field of product model")
+    product_stock = fields.Float(string="Current Stock", help="System will calculate current stock from all locations", store=False, compute="calculate_stock")
+
+    def calculate_stock(self):
+        stock_locations = self.env.context.get('location_id',False)
+        if not stock_locations:
+            stock_locations = self.env['stock.warehouse.ept'].search([]).stock_location_id.ids
+
+        for product in self:
+            product_quantity = 0
+            stock_moves = self.env['stock.move.ept'].search([('product_id','=',product.id),('state', '=' , 'Done')])
+
+            for stock_move in stock_moves:
+                if stock_move.destination_location_id.id in stock_locations:
+                    product_quantity += stock_move.qty_to_deliver
+                elif stock_move.source_location_id.id in stock_locations:
+                    product_quantity -= stock_move.qty_to_deliver
+            product.product_stock = product_quantity
+
+
+
+
+
+
 
 

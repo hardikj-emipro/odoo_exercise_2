@@ -15,3 +15,5 @@ access_res_purchase_order_user,user: Purchase Order User,model_purchase_order_ep
 access_res_purchase_order_line_user,user: Purchase Order Line User,model_purchase_order_line_ept,sales_team.group_sale_salesman,1,1,1,1
 access_res_stock_picking_user,user: Stock Picking User,model_stock_picking_ept,sales_team.group_sale_salesman,1,1,1,1
 access_res_stock_move_user,user: Stock Move User,model_stock_move_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_stock_inventory_user,user: Stock Inventory User,model_stock_inventory_ept,sales_team.group_sale_salesman,1,1,1,1
+access_res_stock_inventory_line_user,user: Stock Inventory Line User,model_stock_inventory_line_ept,sales_team.group_sale_salesman,1,1,1,1

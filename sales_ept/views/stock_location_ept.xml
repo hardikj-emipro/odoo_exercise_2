@@ -39,6 +39,8 @@
             <search string="Stock Location">
                 <field name="name"/>
                 <field name="parent_id"/>
+                <field name="location_type"/>
+                <filter name="filter_location_type" string="Internal" domain="[('location_type','=','Internal')]"/>
             </search>
         </field>
     </record>
@@ -49,6 +51,7 @@
         <field name="res_model">stock.location.ept</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_stock_location_ept_search"/>
+        <field name="context">{'search_default_filter_location_type':1}</field>
         <field name="help" type="html">
             <p>
                 Here you can create Locations.

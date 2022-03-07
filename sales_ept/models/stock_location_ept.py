@@ -1,6 +1,7 @@
-from odoo import fields,models,api
+from odoo import fields,models
 
 class Stock_Location(models.Model):
+
     _name = "stock.location.ept"
     _description = "Stock Location"
 
@@ -9,6 +10,5 @@ class Stock_Location(models.Model):
                                 help="Id of this model will be use in parent id field")
     location_type = fields.Selection(selection=[('Vendor', 'Vendor'), ('Customer', 'Customer'), ('Internal', 'Internal'),
                                           ('Inventory Loss', 'Inventory Loss'), ('Production', 'Production'), ('Transit', 'Transit'),
-                                                ('View', 'View')],
-                                     default='Draft')
+                                                ('View', 'View')])
     is_scrap_location = fields.Boolean(string="Is Scrap Location", help="To identify scrap location")

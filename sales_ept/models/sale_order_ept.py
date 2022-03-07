@@ -35,6 +35,12 @@ class Sale_Order(models.Model):
         string="Warehouse",
         help="Data fetch from warehouse model"
     )
+    picking_ids=fields.One2many(
+        comodel_name="stock.picking.ept",
+        inverse_name="sale_order_id",
+        string="Stock Picking Data",
+        help="O2M field picking_ids"
+    )
 
     @api.depends('order_line.product')
     def compute_total_weight(self):

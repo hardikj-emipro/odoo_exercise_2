@@ -21,6 +21,7 @@
             <form string="Stock Picking">
                 <header>
                     <field name="state" widget="statusbar" clickable="true"/>
+                    <button type="object" string="Validate" name="validate_stock"/>
                 </header>
                 <group>
                     <group>

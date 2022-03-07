@@ -50,10 +50,22 @@
                                     <field name="product"/>
                                     <field name="name_description"/>
                                     <field name="quantity"/>
+                                    <field name="delivered_qty"/>
+                                    <field name="cancelled_qty"/>
                                     <field name="uom_id"/>
                                     <field name="unit_price"/>
                                     <field name="subtotal_without_tax"/>
                                     <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Back Order">
+                            <field name="picking_ids" readonly="True">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="state"/>
+                                    <field name="move_ids"/>
                                 </tree>
                             </field>
                         </page>

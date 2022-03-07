@@ -24,6 +24,12 @@ class Purchase_Order(models.Model):
         string="Order Line",
         help="One2many field for manage oder lines"
     )
+    picking_ids = fields.One2many(
+        comodel_name="stock.picking.ept",
+        inverse_name="purchase_order_id",
+        string="Stock Picking Data",
+        help="O2M field picking_ids"
+    )
 
     @api.model
     def create(self,vals):

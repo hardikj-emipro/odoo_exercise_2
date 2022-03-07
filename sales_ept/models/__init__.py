@@ -14,3 +14,5 @@ from . import stock_picking_ept
 from . import stock_move_ept
 from . import purchase_order_ept
 from . import purchase_order_line_ept
+from . import stock_inventory_ept
+from . import stock_inventory_line_ept

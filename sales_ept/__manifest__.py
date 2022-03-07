@@ -25,7 +25,8 @@
              'views/stock_warehouse_ept.xml',
              'views/stock_location_ept.xml',
              'views/purchase_order_ept.xml',
-             'views/stock_picking_ept.xml'
+             'views/stock_picking_ept.xml',
+             'views/stock_inventory_ept.xml'
              ],
     'demo': ['data/ir_sequence_data.xml'],
     'installable': True,

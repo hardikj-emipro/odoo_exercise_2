@@ -39,11 +39,11 @@ class Stock_Move(models.Model):
         string="Purchase Order Line",
         help="Get data from purchase order model"
     )
-    # stock_inventory_id=fields.Many2one(
-    #     comodel_name="stock.inventory.ept",
-    #     string="Stock Inventory",
-    #     help="Data fetch from Stock Inventory Model"
-    # )
+    stock_inventory_id=fields.Many2one(
+        comodel_name="stock.inventory.ept",
+        string="Stock Inventory",
+        help="Data fetch from Stock Inventory Model"
+    )
     picking_id=fields.Many2one(
         comodel_name="stock.picking.ept",
         string="Stock Picking",
