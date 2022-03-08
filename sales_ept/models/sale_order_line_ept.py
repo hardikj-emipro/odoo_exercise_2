@@ -41,6 +41,12 @@ class Sale_Order_Lines(models.Model):
     cancelled_qty = fields.Float(string="Cancelled Quantity", store=False, compute="compute_cancelled_quantity",
                                  help="Compute Field for count cancelled quantity")
 
+    warehouse_id = fields.Many2one(
+        comodel_name = "stock.warehouse.ept",
+        string = "Warehouse",
+        help = "Warehouse wise stock movement process"
+    )
+
     def compute_delivered_quantity(self):
         stock_move = self.env['stock.move.ept']
         for line in self:

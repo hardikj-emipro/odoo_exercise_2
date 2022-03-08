@@ -56,7 +56,7 @@ class Stock_Picking(models.Model):
         for line in self.move_ids:
             tmp_balance = (line.qty_to_deliver - line.qty_to_done)
             if tmp_balance != 0:
-                if line.qty_to_done <= line.qty_to_deliver:
+                if line.qty_to_done < line.qty_to_deliver:
                     stock_move_line_data.append((0, 0,
                                              {
                                                  "name": line.name,
@@ -71,11 +71,11 @@ class Stock_Picking(models.Model):
                                              }
                                              ))
 
-                    line.write({"state": "Done" , "qty_to_deliver": line.qty_to_done})
+                    line.write({"state": "Done"})
                     if line.qty_to_done == 0:
                         line.unlink()
             else:
-                line.write({"state": "Done", "qty_to_done": line.qty_to_deliver})
+                line.write({"state": "Done"})
 
 
         if stock_move_line_data:
@@ -89,7 +89,4 @@ class Stock_Picking(models.Model):
                 "back_order_id": self.id
             }
             last_record_of_stock_picking = stock_picking.create(stock_picking_data)
-            self.state = "Done"
-        else:
-            raise UserError("Kindly enter valid quantity in done quantity")
-        return last_record_of_stock_picking
+        self.state = "Done"

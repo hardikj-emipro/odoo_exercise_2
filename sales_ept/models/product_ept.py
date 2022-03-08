@@ -36,7 +36,9 @@ class Product_EPT(models.Model):
                     product_quantity -= stock_move.qty_to_deliver
             product.product_stock = product_quantity
 
-
+    def btn_action_update_stock(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id("sales_ept.action_product_stock_update_ept")
+        return action
 
 
 

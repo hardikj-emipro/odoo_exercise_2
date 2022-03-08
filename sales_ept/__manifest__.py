@@ -26,7 +26,9 @@
              'views/stock_location_ept.xml',
              'views/purchase_order_ept.xml',
              'views/stock_picking_ept.xml',
-             'views/stock_inventory_ept.xml'
+             'views/stock_inventory_ept.xml',
+             'wizard/product_stock_update_ept.xml',
+             'views/account_tax_ept.xml'
              ],
     'demo': ['data/ir_sequence_data.xml'],
     'installable': True,

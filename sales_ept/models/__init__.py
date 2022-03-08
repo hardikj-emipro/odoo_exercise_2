@@ -16,3 +16,4 @@ from . import purchase_order_ept
 from . import purchase_order_line_ept
 from . import stock_inventory_ept
 from . import stock_inventory_line_ept
+from . import account_tax_ept

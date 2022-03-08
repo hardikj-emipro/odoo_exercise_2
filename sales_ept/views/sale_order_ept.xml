@@ -25,17 +25,34 @@
                     <field name="state" widget="statusbar" clickable="true"/>
                     <button name="confirm_sale_order" string="Confirm Order" type="object"/>
                 </header>
+                <sheet>
+                     <div name="button_box" class="oe_button_box">
+                    <button
+                    string="Delivery Orders"
+                    class="oe_stat_button"
+                    name="btn_open_delivery_orders"
+                    icon="fa-truck" type="object">
+                        <span><field name="delivery_order_count"/></span>
+                    </button>
+                         <button
+                    string="Stock Move"
+                    class="oe_stat_button"
+                    name="btn_open_stock_moves"
+                    icon="fa-truck" type="object">
+                             <span><field name="stock_move_count"/></span>
+                    </button>
+                    </div>
+
                 <group>
                     <group>
-                        <field name="order_number"/>
                         <field name="partner_id" domain="[('parent_id', '=', False)]"/>
+                        <field name="order_date"/>
                         <field name="partner_invoice_id" domain="[('address_type', '=', 'Invoice'),
                                                                                  ('parent_id.id', '=', partner_id)]"/>
                         <field name="partner_shipping_id" domain="[('address_type', '=', 'Shipping'),
                                                                                   ('parent_id', '=', partner_id)]"/>
                     </group>
                     <group>
-                        <field name="order_date"/>
                         <field name="sales_person"/>
                         <field name="total_weight"/>
                         <field name="total_volume"/>
@@ -56,6 +73,7 @@
                                     <field name="unit_price"/>
                                     <field name="subtotal_without_tax"/>
                                     <field name="state"/>
+                                    <field name="warehouse_id"/>
                                 </tree>
                             </field>
                         </page>
@@ -74,6 +92,7 @@
                 <group>
                     <field name="order_total"/>
                 </group>
+                </sheet>
             </form>
         </field>
     </record>
