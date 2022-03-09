@@ -11,7 +11,8 @@
     """,
     'depends': [
             'sales_team',
-            'res_localization_ept'
+            'res_localization_ept',
+	        'mail'
             ],
     'data': ['security/ir.model.access.csv',
              'views/product_category.xml',

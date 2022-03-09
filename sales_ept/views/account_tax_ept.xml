@@ -39,6 +39,10 @@
                 <field name="tax_use"/>
                 <field name="tax_value"/>
                 <field name="tax_amount_type"/>
+                <group expand="0" string="Group By">
+                    <filter string="Tax Use" name="tax_use" domain="[]" context="{'group_by':'tax_use'}"/>
+                    <filter string="Tax Amount Type" name="tax_amount_type" domain="[]" context="{'group_by':'tax_amount_type'}"/>
+                </group>
             </search>
         </field>
     </record>

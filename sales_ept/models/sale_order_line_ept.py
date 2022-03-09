@@ -29,6 +29,20 @@ class Sale_Order_Lines(models.Model):
 
     subtotal_without_tax = fields.Float(string="Sub Total", compute='compute_subtotal_without_tax', store=True)
 
+    tax_ids = fields.Many2many(
+        comodel_name="account.tax.ept",
+        string="Tax",
+        help="Load only sales type tax",
+        domain="[('tax_use','=','Sales')]"
+    )
+
+    subtotal_with_tax = fields.Float(
+        string="Sub total with tax",
+        help="Calculate Total with tax",
+        digit=(6,2),
+        compute="calculate_sub_total_with_tax"
+    )
+
     stock_move_ids=fields.One2many(
         comodel_name="stock.move.ept",
         inverse_name="sale_line_id",
@@ -70,9 +84,19 @@ class Sale_Order_Lines(models.Model):
         for line in self:
             line.subtotal_without_tax = line.quantity * line.unit_price
 
+    @api.depends('quantity', 'unit_price')
+    def calculate_sub_total_with_tax(self):
+        for line in self:
+            if line.product.tax_ids.tax_amount_type == "Percentage":
+                line.subtotal_with_tax = line.subtotal_without_tax + (line.subtotal_without_tax * line.tax_ids.tax_value) / 100
+            else:
+                line.subtotal_with_tax = line.subtotal_without_tax +  line.tax_ids.tax_value
+
     @api.onchange('product')
     def on_change_product(self):
-        self.unit_price = self.product.sale_price
-        self.quantity = 1
+        if self.product:
+            self.unit_price = self.product.sale_price
+            self.tax_ids = self.product.tax_ids.ids
+            self.quantity = 1
 
 

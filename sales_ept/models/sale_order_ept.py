@@ -5,6 +5,7 @@ from odoo import api
 
 class Sale_Order(models.Model):
     _name = "sale.order.ept"
+    _inherit=['mail.thread','mail.activity.mixin']
     _description = "Sale Order"
     _rec_name = "order_number"
 
@@ -46,6 +47,12 @@ class Sale_Order(models.Model):
 
     stock_move_count = fields.Integer(store=False, help="Total Move Orders", compute="compute_move_orders")
 
+    total_tax = fields.Float(string="Total Tax", digit=(6,2), help="to store and display tax amount",
+                             compute = "compute_total_tax_amount")
+
+    total_amount = fields.Float(string="Total Amount", digit=(6,2), help="to store and display tax amount",
+                             compute = "compute_total_amount")
+
     def compute_delivery_order(self):
         tmp_count = 0
         for id in self.picking_ids:
@@ -82,6 +89,21 @@ class Sale_Order(models.Model):
             for line in order.order_line:
                 order_total += line.subtotal_without_tax
             order.order_total = order_total
+
+    @api.depends('order_line.subtotal_with_tax')
+    def compute_total_tax_amount(self):
+        for order in self:
+            total_tax = 0
+            for line in order.order_line:
+                total_tax += (line.subtotal_with_tax - line.subtotal_without_tax)
+            order.total_tax = total_tax
+
+
+    @api.depends('order_line')
+    def compute_total_amount(self):
+        for order in self:
+            self.total_amount = order.order_total + order.total_tax
+
 
     @api.onchange('partner_id')
     def on_change_partner(self):

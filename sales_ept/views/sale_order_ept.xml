@@ -42,7 +42,6 @@
                              <span><field name="stock_move_count"/></span>
                     </button>
                     </div>
-
                 <group>
                     <group>
                         <field name="partner_id" domain="[('parent_id', '=', False)]"/>
@@ -67,11 +66,13 @@
                                     <field name="product"/>
                                     <field name="name_description"/>
                                     <field name="quantity"/>
-                                    <field name="delivered_qty"/>
-                                    <field name="cancelled_qty"/>
                                     <field name="uom_id"/>
                                     <field name="unit_price"/>
+                                    <field name="delivered_qty"/>
+                                    <field name="cancelled_qty"/>
+                                    <field name="tax_ids" widget="many2many_tags"/>
                                     <field name="subtotal_without_tax"/>
+                                    <field name="subtotal_with_tax"/>
                                     <field name="state"/>
                                     <field name="warehouse_id"/>
                                 </tree>
@@ -91,8 +92,15 @@
                 </group>
                 <group>
                     <field name="order_total"/>
+                    <field name="total_tax"/>
+                    <field name="total_amount"/>
                 </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>

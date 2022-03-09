@@ -50,6 +50,9 @@
                         <page string="Description">
                             <field name="product_description"/>
                         </page>
+                        <page string="Accounting">
+                            <field name="tax_ids" widget='many2many_tags'/>
+                        </page>
                     </notebook>
                 </group>
             </form>

@@ -19,6 +19,12 @@ class Product_EPT(models.Model):
     uom_id = fields.Many2one('product.uom.ept', string="Unit", help="Unit for product will use in sales and purchase transaction")
     product_description=fields.Text(string="Description", help="Product description field of product model")
     product_stock = fields.Float(string="Current Stock", help="System will calculate current stock from all locations", store=False, compute="calculate_stock")
+    tax_ids = fields.Many2many(
+        comodel_name = "account.tax.ept",
+        string="Tax Percentage",
+        help="Load only sales type tax",
+        domain="[('tax_use','=','Sales')]"
+    )
 
     def calculate_stock(self):
         stock_locations = self.env.context.get('location_id',False)
