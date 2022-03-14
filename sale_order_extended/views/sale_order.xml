@@ -6,12 +6,18 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
         <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <button type="object" name="action_manage_deposite" string="Manage Deposite"/>
+            </field>
             <field name="date_order" position="after">
                 <field name="lead_id"/>
             </field>
+            <xpath expr="//header" position="inside">
+                <button type="object" name="action_collect_products" string="Scan Products(Req. 18)"/>
+            </xpath>
         </field>
     </record>
 
     <menuitem id="menu_sale_order_extended" name="Sale Order Extended"
-    action="sale.action_quotations"/>
+              action="sale.action_quotations"/>
 </odoo>

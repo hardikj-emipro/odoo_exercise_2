@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order Line">
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="product_uom_qty"/>
+                <field name="price_unit"/>
+                <field name="tax_id"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_sale_order_line" model="ir.actions.act_window">
+        <field name="name">Sales Order Line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p>
+                Here you can view sale order line.
+            </p>
+        </field>
+    </record>
+</odoo>

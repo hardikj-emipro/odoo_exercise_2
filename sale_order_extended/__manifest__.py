@@ -11,11 +11,14 @@
     """,
     'depends': [
             'sale_crm',
-	        'mail'
+	        'mail',
+            'product'
             ],
     'data': ['security/ir.model.access.csv',
              'data/sample_data.xml',
-             'views/sale_order.xml'],
+             'views/sale_order.xml',
+             'views/product_product.xml',
+             'views/sale_order_line.xml'],
     'demo': [],
     'installable': True,
     'application': False,

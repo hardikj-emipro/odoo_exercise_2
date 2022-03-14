@@ -4,5 +4,11 @@
         <record id="crm_tag_new_value" model="crm.tag">
             <field name="name">From Lead</field>
         </record>
+        <record id="shipping_product_service" model="product.product">
+            <field name="name">Shipping Charges</field>
+            <field name="detailed_type">service</field>
+            <field name="list_price">100.00</field>
+            <field name="invoice_policy">order</field>
+    </record>
     </data>
 </odoo>
