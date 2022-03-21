@@ -7,14 +7,46 @@
         <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <button type="object" name="action_manage_deposite" string="Manage Deposite"/>
+                <button type="object" name="action_manage_deposite" string="Manage Deposit"/>
             </field>
             <field name="date_order" position="after">
                 <field name="lead_id"/>
             </field>
             <xpath expr="//header" position="inside">
                 <button type="object" name="action_collect_products" string="Scan Products(Req. 18)"/>
+                <button type="object" name="action_confirm_validate" string="Confirm Quotation(Req. 19)"/>
             </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='company_id']" position="after">
+                    <field name="profit_value"/>
+                    <field name="profit_percentage"/>
+                    <field name="warehouse_ept_id"/>
+            </xpath>
+            <field name="tax_totals_json" position="after">
+                <field name="total_profit"/>
+                <field name="total_profit_percentage"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_order_extended_inherit_tree" model="ir.ui.view">
+        <field name="name">sale.order.extended.inherit.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="is_all_picking_completed"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_order_extended_search" model="ir.ui.view">
+        <field name="name">sale.order.extended.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="order_month" position="after">
+                <filter name="is_all_picking_completed" string="All Done Orders" domain="[('is_all_picking_completed', '=', True)]"/>
+            </filter>
         </field>
     </record>
 
